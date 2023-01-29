@@ -1,24 +1,53 @@
 <main class="form-signin w-100 m-auto">
-  <form>
+  <form (ngSubmit)="onSubmit()" #myForm="ngForm">
     <h1 class="h3 mb-3 fw-normal">Register</h1>
 
     <div class="form-floating">
-      <input class="form-control" placeholder="Full Name" />
-      <label>Full Name</label>
+      <input
+        name="first_name"
+        class="form-control"
+        placeholder="First Name"
+        ngModel
+      />
+      <label>First Name</label>
     </div>
     <div class="form-floating">
-      <input type="email" class="form-control" placeholder="Email" />
+      <input
+        name="last_name"
+        class="form-control"
+        placeholder="Last Name"
+        ngModel
+      />
+      <label>Last Name</label>
+    </div>
+    <div class="form-floating">
+      <input
+        name="email"
+        type="email"
+        class="form-control"
+        placeholder="Email"
+        type="email"
+        ngModel
+      />
       <label>Email address</label>
     </div>
     <div class="form-floating">
-      <input type="password" class="form-control" placeholder="Password" />
+      <input
+        name="password"
+        type="password"
+        class="form-control"
+        placeholder="Password"
+        ngModel
+      />
       <label>Password</label>
     </div>
     <div class="form-floating">
       <input
+        name="confirm_password"
         type="password"
         class="form-control"
         placeholder="Confirm Password"
+        ngModel
       />
       <label>Confirm Password</label>
     </div>
