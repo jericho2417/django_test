@@ -25,7 +25,11 @@ export class RegisterComponent {
         console.log(response);
         this.router.navigate(['/login']);
       },
-      error: (error) => console.log(error),
+      error: (error) => {
+        console.log(error)
+        this.router.navigate(['/register']);
+        ;
+      },
     });
   }
 }
