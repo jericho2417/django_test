@@ -2,7 +2,7 @@ from django.shortcuts import render
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import exceptions
-from core.authentication import create_access_token
+from core.authentication import create_access_token, JWTAuthentication, create_refresh_token, decode_refresh_token
 
 from core.models import User
 from .serializers import UserSerializer
@@ -21,6 +21,13 @@ class RegisterAPIView(APIView):
         return Response(serializer.data)
 
 
+class UserAPIView(APIView):
+    authentication_classes = [JWTAuthentication]
+
+    def get(self, request):
+        return Response(UserSerializer(request.user).data)
+
+
 class LoginAPIView(APIView):
     def post(self, request):
         email = request.data['email']
@@ -32,7 +39,7 @@ class LoginAPIView(APIView):
         if not user.check_password(password):
             raise exceptions.AuthenticationFailed('Invalid credentials')
         access_token = create_access_token(user.id)
-        refresh_token = create_access_token(user.id)
+        refresh_token = create_refresh_token(user.id)
         response = Response()
         response.set_cookie(key='refresh_token',
                             value=refresh_token, httponly=True)
@@ -40,5 +47,13 @@ class LoginAPIView(APIView):
             'token': access_token
         }
         return response
-        # serializer = UserSerializer(user)
-        # return Response(serializer.data)
+
+
+class RefreshAPIView(APIView):
+    def post(self, request):
+        refresh_token = request.COOKIES.get('refresh_token')
+        id = decode_refresh_token(refresh_token)
+        access_token = create_access_token(id)
+        return Response({
+            "token": access_token
+        })
