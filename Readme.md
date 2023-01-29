@@ -5,6 +5,6 @@ By:
 
 Jericho B. Marasigan
 Janrie Melendrez
-Inah Manalo
+Ma. Alrina Manalo
 Emmanuel Lumacad
 Leomar Aguilucho
