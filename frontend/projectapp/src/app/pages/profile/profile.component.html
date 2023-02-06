@@ -1,0 +1,61 @@
+<div class="container">
+  <div class="card mx-auto" style="width: 18rem">
+    <img
+      src="https://upload.wikimedia.org/wikipedia/commons/9/99/Sample_User_Icon.png"
+      class="card-img-top"
+      alt="..."
+    />
+    <div class="card-body">
+      <h5 class="card-title">
+        {{ profile.first_name }} {{ profile.last_name }}
+      </h5>
+      <h6 class="card-subtitle mb-2 text-muted">{{ profile.email }}</h6>
+      <p class="card-text">This is your user profile.</p>
+      <a routerLink="/" class="btn btn-primary">Go back</a>
+    </div>
+  </div>
+</div>
+<main class="form-signin w-100 m-auto">
+  <form (ngSubmit)="onSubmit()" #myForm="ngForm">
+    <div class="form-floating">
+      <input
+        name="first_name"
+        class="form-control"
+        placeholder="First Name"
+        ngModel
+      />
+      <label>First Name</label>
+    </div>
+    <div class="form-floating">
+      <input
+        name="last_name"
+        class="form-control"
+        placeholder="Last Name"
+        ngModel
+      />
+      <label>Last Name</label>
+    </div>
+    <div class="form-floating">
+      <input
+        name="email"
+        type="email"
+        class="form-control"
+        placeholder="Email"
+        type="email"
+        ngModel
+      />
+      <label>Email address</label>
+    </div>
+    <div class="form-floating">
+      <input
+        name="password"
+        type="password"
+        class="form-control"
+        placeholder="Password"
+        ngModel
+      />
+      <label>Password</label>
+    </div>
+    <button class="w-100 btn btn-lg btn-primary" type="submit">Register</button>
+  </form>
+</main>

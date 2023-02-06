@@ -28,7 +28,7 @@ export class LoginComponent {
       next: (response: any) => {
         const tokenInfo = this.getDecodedAccessToken(response.token); // decode token
         console.log(tokenInfo);
-        localStorage.setItem('id', tokenInfo.id);
+        localStorage.setItem('id', tokenInfo.user_id);
         this.router.navigate(['/']);
       },
       error: (error) => {

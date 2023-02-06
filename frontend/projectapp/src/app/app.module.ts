@@ -10,6 +10,7 @@ import { NavComponent } from './components/nav/nav.component';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { PostComponent } from './pages/post/post.component';
+import { ProfileComponent } from './pages/profile/profile.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { PostComponent } from './pages/post/post.component';
     RegisterComponent,
     HomeComponent,
     NavComponent,
-    PostComponent
+    PostComponent,
+    ProfileComponent
   ],
   imports: [
     BrowserModule,

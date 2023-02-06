@@ -28,6 +28,20 @@ class UserAPIView(APIView):
         return Response(UserSerializer(request.user).data)
 
 
+class UserDetailsAPIView(APIView):
+
+    def get(self, request, id):
+        user = User.objects.get(pk=id)
+        return Response(UserSerializer(user).data)
+
+    def put(self, request, id):
+        user = User.objects.get(pk=id)
+        data = UserSerializer(instance=user, data=request.data)
+        data.is_valid(raise_exception=True)
+        data.save()
+        return Response(data.data)
+
+
 class PostAPIView(APIView):
 
     def get(self, request):
