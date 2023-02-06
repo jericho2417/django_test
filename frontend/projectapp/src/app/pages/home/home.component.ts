@@ -23,14 +23,19 @@ export class HomeComponent {
   constructor(private http: HttpClient, private router: Router) {
   }
   ngOnInit() {
-    this.http.get<any>('http://127.0.0.1:8000/api/post').subscribe({
-      next: data => {
-        this.PostObjects = data
-      },
-      error: error => {
-        console.error('There was an error!', error);
-      }
-    })
+    if (localStorage.getItem("id")) {
+      this.http.get<any>('http://127.0.0.1:8000/api/post').subscribe({
+        next: data => {
+          this.PostObjects = data
+        },
+        error: error => {
+          console.error('There was an error!', error);
+        }
+      })
+    }
+    else {
+      this.router.navigate(['/login']);
+    }
   }
   onSubmit() {
     this.http.post('http://127.0.0.1:8000/api/post', {
@@ -46,5 +51,9 @@ export class HomeComponent {
         ;
       },
     });
+  }
+  logout() {
+    localStorage.clear();
+    this.router.navigate(['/login']);
   }
 }
