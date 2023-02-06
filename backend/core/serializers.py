@@ -1,5 +1,5 @@
 from rest_framework.serializers import ModelSerializer
-from .models import User
+from .models import User, Post
 
 
 class UserSerializer(ModelSerializer):
@@ -17,3 +17,12 @@ class UserSerializer(ModelSerializer):
             instance.set_password(password)
         instance.save()
         return instance
+
+
+class PostSerializer(ModelSerializer):
+    class Meta:
+        model = Post
+        fields = ['id', 'content', 'created']
+
+    def create(self, validated_data):
+        return Post.objects.create(**validated_data)

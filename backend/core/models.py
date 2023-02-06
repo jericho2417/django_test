@@ -15,3 +15,8 @@ class User(AbstractUser):
     REQUIRED_FIELDS = [
 
     ]
+
+
+class Post(models.Model):
+    content = models.TextField()
+    created = models.DateTimeField(auto_now_add=True)
