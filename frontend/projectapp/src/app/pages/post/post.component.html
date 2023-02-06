@@ -9,3 +9,17 @@
     </div>
   </div>
 </div>
+<main class="form-signin w-100 m-auto">
+  <form (ngSubmit)="onSubmit()" #myForm="ngForm">
+    <div class="form-floating">
+      <input
+        name="content"
+        class="form-control"
+        placeholder="Type here"
+        ngModel
+      />
+      <label>Edit post</label>
+    </div>
+    <button class="w-100 btn btn-lg btn-primary" type="submit">Edit</button>
+  </form>
+</main>
